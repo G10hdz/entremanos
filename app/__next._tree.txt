@@ -1,0 +1,4 @@
+:HL["/entremanos/_next/static/chunks/399-8ryz_i2_l.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"app","h":96,"c":"$Q2"}]]
+0:{"b":"N3FJCCuCpeh3-fChn6XTl","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
