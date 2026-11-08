@@ -1,0 +1,638 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>entremanos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="entremanos es un banco de tiempo de cuidados. Una hora de cuidado que das se convierte en una hora de cuidado o de servicio para ti, entre personas de tu comunidad. Piloto en Iztapalapa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500&display=swap">
+<style>
+  /* Layout concept: editorial, left-aligned columns on a warm cream ground; sage panels carry
+     the explanations, rose marks the "hour" wherever it appears. One look, light only. */
+  :root {
+    color-scheme: light;
+    --crema: #F6F1E9;
+    --salvia-claro: #DDE5CB;
+    --salvia: #A9B99D;
+    --rosa: #E5B9B5;
+    --bosque: #374B42;
+    --texto-2: #54645B;      /* secondary text on crema: 5.57:1 */
+    --titular: #65726A;      /* large display text only, on crema */
+    --linea: #cfc8b8;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    --r-s: 10px;
+    --r-m: 22px;
+    --r-l: 36px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--crema);
+    color: var(--bosque);
+    font-family: var(--sans);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 650; color: var(--bosque); text-wrap: balance; margin: 0 0 .5em; }
+  h1 { font-size: clamp(2.6rem, 9.5vw, 4.6rem); line-height: 1.04; letter-spacing: -.02em; }
+  h1 em { font-style: italic; font-weight: 500; color: var(--titular); }
+  h2 { font-size: clamp(1.9rem, 6vw, 2.9rem); line-height: 1.1; letter-spacing: -.015em; }
+  h3 { font-size: 1.3rem; line-height: 1.2; }
+  p { margin: 0 0 1em; max-width: 62ch; }
+  a { color: var(--bosque); text-underline-offset: 3px; }
+  .muted { color: var(--texto-2); }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  section { padding-block: 64px; }
+
+  /* Visible focus on every interactive element */
+  :focus-visible { outline: 3px solid var(--bosque); outline-offset: 3px; box-shadow: 0 0 0 7px var(--rosa); border-radius: 6px; }
+
+  .skip {
+    position: absolute; left: 12px; top: -80px; z-index: 50; background: var(--bosque); color: var(--crema);
+    padding: 12px 18px; border-radius: var(--r-s); font-weight: 700; text-decoration: none;
+  }
+  .skip:focus { top: 12px; }
+
+  .eyebrow { display: block; font-size: .85rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--texto-2); margin-bottom: 14px; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px;
+    border-radius: 999px; border: 2px solid var(--bosque); background: var(--bosque); color: var(--crema);
+    font: 700 1rem/1 var(--sans); text-decoration: none; cursor: pointer;
+  }
+  .btn:hover { background: #2a3a33; }
+  .btn.ghost { background: transparent; color: var(--bosque); }
+  .btn.ghost:hover { background: var(--salvia-claro); }
+  .btn.rose { background: var(--rosa); color: var(--bosque); }
+  .btn.rose:hover { background: #dba7a2; }
+
+  /* Header */
+  header.top { padding-block: 18px; }
+  header.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-weight: 650; font-size: 1.55rem; letter-spacing: -.02em; color: var(--bosque); }
+  .brand svg { width: 38px; height: 38px; flex: none; }
+  nav ul { display: flex; flex-wrap: wrap; gap: 4px 6px; list-style: none; margin: 0; padding: 0; }
+  nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: .98rem; }
+  nav a:hover { background: var(--salvia-claro); }
+
+  /* Hero */
+  .hero { padding-top: 24px; }
+  .hero-grid { display: grid; gap: 36px; align-items: center; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 16px; }
+  .lead { font-size: 1.25rem; color: var(--texto-2); }
+  .scene { margin: 0; }
+  .scene svg { display: block; width: 100%; height: auto; max-width: 100%; }
+  .scene figcaption { margin-top: 10px; font-size: .95rem; color: var(--texto-2); }
+
+  /* Problem band */
+  .band { background: var(--salvia-claro); border-radius: var(--r-l); padding: 40px 24px; }
+  .three { display: grid; gap: 22px; margin-top: 28px; }
+  .three div { border-top: 3px solid var(--bosque); padding-top: 14px; }
+  .three h3 { margin-bottom: .2em; }
+  .three p { margin: 0; color: var(--bosque); }
+  .stat b { display: block; font: 650 2.4rem/1.05 var(--serif); letter-spacing: -.02em; }
+  .stat cite { display: block; margin-top: 6px; font-style: normal; font-size: .9rem; color: var(--texto-2); }
+  .cause { margin-top: 32px; padding: 22px; background: #fffaf2; border: 2px solid var(--bosque); border-radius: var(--r-m); }
+  .cause p:last-child { margin-bottom: 0; }
+  .metrics { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; }
+  .metrics li { padding: 18px 20px; background: var(--salvia-claro); border-radius: var(--r-s); }
+  .metrics b { display: block; font-family: var(--serif); font-size: 1.15rem; }
+  .sources { font-size: .9rem; color: var(--texto-2); }
+  .sources li { margin-bottom: .3em; }
+  @media (min-width: 860px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Steps */
+  .steps { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 18px; counter-reset: paso; }
+  .steps li { counter-increment: paso; display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; align-items: start; padding: 22px; background: #fffaf2; border: 2px solid var(--bosque); border-radius: var(--r-m); }
+  .steps li::before { content: counter(paso); grid-row: span 2; width: 48px; height: 48px; border-radius: 50%; background: var(--rosa); color: var(--bosque); display: grid; place-items: center; font: 650 1.4rem/1 var(--serif); }
+  .steps h3 { margin: 0; }
+  .steps p { margin: 0; color: var(--texto-2); }
+
+  /* Tabs */
+  .tabs { margin-top: 30px; }
+  [role="tablist"] { display: flex; flex-wrap: wrap; gap: 8px; }
+  [role="tab"] { min-height: 52px; padding: 0 22px; border-radius: 999px; border: 2px solid var(--bosque); background: transparent; color: var(--bosque); font: 700 1rem/1 var(--sans); cursor: pointer; }
+  [role="tab"][aria-selected="true"] { background: var(--bosque); color: var(--crema); }
+  [role="tab"]:hover[aria-selected="false"] { background: var(--salvia-claro); }
+  [role="tabpanel"] { margin-top: 18px; background: var(--salvia-claro); border-radius: var(--r-m); padding: 28px 24px; }
+  [role="tabpanel"] ul { margin: 0 0 1em; padding-left: 1.2em; }
+  [role="tabpanel"] li { margin-bottom: .4em; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 18px 0 0; }
+  .chips li { padding: 10px 18px; border-radius: 999px; background: var(--rosa); font-weight: 700; }
+  .chips.oficios li { background: var(--salvia); }
+
+  /* Demo */
+  .demo { background: var(--bosque); color: var(--crema); border-radius: var(--r-l); padding: 40px 24px; }
+  .demo h2, .demo h3 { color: var(--crema); }
+  .demo p { color: var(--crema); }
+  .demo .eyebrow { color: var(--salvia-claro); }
+  .demo-grid { display: grid; gap: 28px; align-items: center; margin-top: 24px; }
+  .balance { background: var(--crema); color: var(--bosque); border-radius: var(--r-m); padding: 22px; }
+  .balance output { display: block; font: 650 4rem/1 var(--serif); letter-spacing: -.02em; }
+  .balance small { color: var(--texto-2); font-size: .95rem; }
+  .gauge { position: relative; height: 16px; margin: 20px 0 8px; background: var(--salvia-claro); border-radius: 999px; border: 2px solid var(--bosque); }
+  .gauge .zero { position: absolute; top: -6px; bottom: -6px; width: 3px; background: var(--bosque); left: 33.333%; }
+  .gauge .dot { position: absolute; top: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: var(--rosa); border: 3px solid var(--bosque); transition: left .25s ease; }
+  .scale { display: flex; justify-content: space-between; font-size: .85rem; color: var(--texto-2); }
+  .demo .controls { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+  .demo .btn { border-color: var(--crema); }
+  .demo .btn.rose { border-color: var(--rosa); }
+  .demo .btn.ghost { color: var(--crema); }
+  .demo .btn.ghost:hover { background: #4a5f54; }
+  .demo .status { min-height: 3.2em; margin-top: 16px; font-weight: 700; }
+  .demo :focus-visible { outline-color: var(--crema); box-shadow: 0 0 0 7px var(--rosa); }
+
+  /* Rules */
+  .rules { display: grid; gap: 18px; margin-top: 28px; }
+  .rule { padding: 22px; border-radius: var(--r-m); background: #fffaf2; border: 2px solid var(--bosque); }
+  .rule:nth-child(2) { background: var(--rosa); }
+  .rule:nth-child(3) { background: var(--salvia-claro); }
+  .rule h3 { margin-bottom: .25em; }
+  .rule p { margin: 0; }
+
+  /* Community map */
+  .map-grid { display: grid; gap: 28px; margin-top: 28px; align-items: start; }
+  .map svg { display: block; width: 100%; height: auto; border-radius: var(--r-m); }
+  .map-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: pin; }
+  .map-list li { display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: start; padding: 12px 14px; background: var(--salvia-claro); border-radius: var(--r-s); }
+  .map-list b.n { width: 38px; height: 38px; border-radius: 50%; background: var(--rosa); border: 2px solid var(--bosque); display: grid; place-items: center; font-family: var(--serif); font-size: 1.1rem; }
+  .map-list span { display: block; color: var(--texto-2); font-size: .95rem; }
+
+  /* Trust */
+  .trust { display: grid; gap: 18px; margin-top: 26px; }
+  .trust div { padding-left: 20px; border-left: 4px solid var(--salvia); }
+  .trust b { display: block; font-family: var(--serif); font-size: 1.2rem; margin-bottom: 2px; }
+  .trust p { margin: 0; color: var(--texto-2); }
+
+  /* FAQ */
+  details { border-bottom: 2px solid var(--bosque); }
+  summary { cursor: pointer; list-style: none; min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-weight: 700; padding-block: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font: 500 1.8rem/1 var(--serif); }
+  details[open] summary::after { content: "\2212"; }
+  details p { color: var(--texto-2); padding-bottom: 18px; margin: 0; }
+
+  /* Sign-up */
+  .signup { background: var(--rosa); border-radius: var(--r-l); padding: 44px 24px; }
+  .signup p { color: var(--bosque); }
+
+  footer { padding-block: 40px 56px; border-top: 2px solid var(--bosque); margin-top: 24px; font-size: .98rem; }
+  footer p { max-width: none; margin-bottom: .5em; }
+
+  /* Dialog */
+  dialog { max-width: min(640px, calc(100vw - 32px)); width: 100%; border: 3px solid var(--bosque); border-radius: var(--r-m); padding: 28px 24px; background: var(--crema); color: var(--bosque); }
+  dialog::backdrop { background: rgba(55, 75, 66, .62); }
+  dialog ul { padding-left: 1.2em; margin: 0 0 1.2em; }
+  dialog li { margin-bottom: .5em; }
+
+  @media (min-width: 860px) {
+    section { padding-block: 88px; }
+    .hero-grid { grid-template-columns: 1.1fr .9fr; }
+    .band { padding: 56px; }
+    .three { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .steps { grid-template-columns: repeat(3, 1fr); }
+    .steps li { display: block; }
+    .steps li::before { margin-bottom: 14px; }
+    .demo { padding: 56px; }
+    .demo-grid { grid-template-columns: 1fr 1fr; }
+    .rules { grid-template-columns: repeat(2, 1fr); }
+    .map-grid { grid-template-columns: 1.2fr .8fr; }
+    .trust { grid-template-columns: repeat(2, 1fr); gap: 28px 40px; }
+    .signup { padding: 64px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .gauge .dot { transition: none; }
+  }
+</style>
+
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="entremanos, inicio">
+      <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <circle cx="14" cy="20" r="11" fill="#E5B9B5" stroke="#374B42" stroke-width="2.5"/>
+        <circle cx="26" cy="20" r="11" fill="#A9B99D" fill-opacity=".85" stroke="#374B42" stroke-width="2.5"/>
+        <path d="M20 13v7l4 3" fill="none" stroke="#374B42" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      entremanos
+    </a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#probar">Probar el banco</a></li>
+        <li><a href="#reglas">Reglas</a></li>
+        <li><a href="#impacto">Impacto</a></li>
+        <li><a href="#comunidad">Comunidad</a></li>
+        <li><a href="#unirme">Participar</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido" tabindex="-1">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio" aria-labelledby="t-hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Banco de tiempo de cuidados · Piloto en Iztapalapa</span>
+        <h1 id="t-hero">Una hora de cuidado, <em>una hora de vuelta.</em></h1>
+        <p class="lead">En entremanos, las familias que cuidan se cuidan entre sí. Das horas de cuidado a otra familia de tu comunidad y recibes horas de cuidado, o un servicio profesional, cuando tú lo necesitas. No se paga con dinero.</p>
+        <div class="actions">
+          <a class="btn" href="#como-funciona">Ver cómo funciona</a>
+          <a class="btn ghost" href="#unirme">Quiero participar</a>
+        </div>
+        <p class="muted" style="font-size:.98rem;margin:0">Por ejemplo: una dentista da 2 horas de limpieza dental y recibe 2 horas de cuidado para su familiar.</p>
+      </div>
+
+      <figure class="scene">
+        <svg viewBox="0 0 480 420" role="img" aria-labelledby="scene-t scene-d">
+          <title id="scene-t">Ilustración de una colonia</title>
+          <desc id="scene-d">Tres casas de una misma calle conectadas por un hilo que une relojes de una hora. Debajo, dos personas se pasan un reloj de una hora entre las manos.</desc>
+          <rect x="0" y="0" width="480" height="420" rx="36" fill="#DDE5CB"/>
+          <circle cx="395" cy="70" r="34" fill="#E5B9B5"/>
+          <path d="M0 300 C120 270 220 320 340 290 C400 275 440 285 480 280 L480 420 L0 420 Z" fill="#A9B99D"/>
+          <!-- houses -->
+          <g stroke="#374B42" stroke-width="3" stroke-linejoin="round">
+            <rect x="40" y="170" width="110" height="120" fill="#F6F1E9"/>
+            <path d="M28 172 L95 108 L162 172 Z" fill="#374B42"/>
+            <rect x="82" y="224" width="26" height="66" fill="#E5B9B5"/>
+            <rect x="185" y="140" width="120" height="150" fill="#F6F1E9"/>
+            <path d="M173 142 L245 76 L317 142 Z" fill="#E5B9B5"/>
+            <rect x="225" y="226" width="30" height="64" fill="#A9B99D"/>
+            <rect x="338" y="185" width="100" height="105" fill="#F6F1E9"/>
+            <path d="M326 187 L388 128 L450 187 Z" fill="#A9B99D"/>
+            <rect x="376" y="236" width="24" height="54" fill="#374B42"/>
+          </g>
+          <!-- thread with hour tokens -->
+          <path d="M95 96 C150 40 200 40 245 62 C300 40 350 60 388 116" fill="none" stroke="#374B42" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+          <g stroke="#374B42" stroke-width="3" stroke-linecap="round">
+            <circle cx="170" cy="52" r="17" fill="#F6F1E9"/><path d="M170 42v10l6 4" fill="none"/>
+            <circle cx="318" cy="60" r="17" fill="#F6F1E9"/><path d="M318 50v10l6 4" fill="none"/>
+          </g>
+          <!-- two people passing an hour -->
+          <g stroke="#374B42" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="170" cy="334" r="15" fill="#F6F1E9"/>
+            <path d="M146 394 C146 358 194 358 194 394 Z" fill="#E5B9B5"/>
+            <circle cx="310" cy="334" r="15" fill="#F6F1E9"/>
+            <path d="M286 394 C286 358 334 358 334 394 Z" fill="#374B42"/>
+            <path d="M190 372 C214 376 218 378 232 372" fill="none"/>
+            <path d="M290 372 C266 376 262 378 248 372" fill="none"/>
+            <circle cx="240" cy="364" r="22" fill="#F6F1E9"/><path d="M240 350v14l8 5" fill="none"/>
+          </g>
+        </svg>
+        <figcaption>Ilustración: vecinas y vecinos que se pasan horas de cuidado de casa en casa.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section aria-labelledby="t-problema" style="padding-block:0">
+    <div class="wrap band">
+      <span class="eyebrow">Por qué existe</span>
+      <h2 id="t-problema">Cuidar es trabajo. Casi nunca se ve y casi nunca se paga.</h2>
+      <p>Quien cuida a un hijo, a su mamá o a un familiar con discapacidad suele hacerlo sin descanso, sin ingreso y sin red. Contratar ayuda cuesta dinero que no siempre hay.</p>
+      <div class="three">
+        <div><h3>Falta tiempo</h3><p>Las citas médicas, los traslados y el cuidado diario no dejan horas libres.</p></div>
+        <div><h3>Falta dinero</h3><p>Pagar a alguien para cuidar, o para arreglar algo en casa, no siempre es posible.</p></div>
+        <div><h3>Sobra comunidad</h3><p>La gente cerca de ti tiene tiempo y habilidades. Falta una forma sencilla de conectarlas.</p></div>
+      </div>
+      <div class="three">
+        <div class="stat"><b>31.7 millones</b><p>de personas de 15 años y más daban cuidados en 2022. El 75.1% eran mujeres.</p><cite>INEGI, ENASIC 2022</cite></div>
+        <div class="stat"><b>28.8 h contra 12.9 h</b><p>a la semana dedicaban a cuidar las mujeres y los hombres.</p><cite>INEGI, ENUT 2019</cite></div>
+        <div class="stat"><b>26.3% del PIB</b><p>vale el trabajo doméstico y de cuidados no pagado. Las mujeres aportaron el 71.5%.</p><cite>INEGI, Cuenta Satélite 2023</cite></div>
+      </div>
+      <div class="cause">
+        <h3>La causa de fondo es la falta de tiempo</h3>
+        <p>El cansancio de quien cuida es el síntoma. Debajo hay una deuda de tiempo: el cuidado se queda en pocas manos, no se registra y no se puede pedir de vuelta.</p>
+        <p>Los apoyos que existen dan dinero a pocas personas. El programa Ciudad que Cuida a quien Cuida, en la Ciudad de México, da hasta 6,000 pesos al año a 1,000 personas, cuando su población objetivo es de 3,080,632. entremanos no lo sustituye: suma el tiempo de la comunidad, que sí está ahí.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="como-funciona" aria-labelledby="t-como">
+    <div class="wrap">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2 id="t-como">Tres pasos y una sola moneda: la hora.</h2>
+      <ol class="steps">
+        <li><h3>Te registras y te verificas</h3><p>Dinos si necesitas apoyo de cuidado para un familiar, si quieres cuidar, o ambas cosas.</p></li>
+        <li><h3>Ofreces tus horas</h3><p>Ofreces horas de cuidado. Si tienes una profesión u oficio, también puedes ofrecerlo.</p></li>
+        <li><h3>Usas tus horas</h3><p>Cuando necesitas cuidado, usas las horas que ganaste con personas de tu comunidad. Cada hora se confirma.</p></li>
+      </ol>
+
+      <div class="tabs">
+        <h3 id="t-roles" style="margin-bottom:.6em">Dos formas de participar</h3>
+        <div role="tablist" aria-labelledby="t-roles">
+          <button role="tab" id="tab-familia" aria-controls="panel-familia" aria-selected="true" tabindex="0">Cuido a un familiar</button>
+          <button role="tab" id="tab-vecino" aria-controls="panel-vecino" aria-selected="false" tabindex="-1">Quiero cuidar</button>
+        </div>
+        <div role="tabpanel" id="panel-familia" aria-labelledby="tab-familia">
+          <ul>
+            <li>Necesitas apoyo con el cuidado de alguien de tu familia.</li>
+            <li>Ofreces tu profesión u oficio a cambio de horas de cuidado.</li>
+            <li>También puedes ganar horas cuidando a otras familias.</li>
+          </ul>
+          <a class="btn" href="#unirme">Participar como familia</a>
+        </div>
+        <div role="tabpanel" id="panel-vecino" aria-labelledby="tab-vecino" hidden>
+          <ul>
+            <li>Eres vecina o vecino, con tiempo y ganas de ayudar. No necesitas tener un familiar dependiente.</li>
+            <li>Das horas de cuidado a familias de tu comunidad.</li>
+            <li>Recibes a cambio el servicio de oficio o profesión que ofrece la familia.</li>
+          </ul>
+          <a class="btn" href="#unirme">Participar como cuidadora o cuidador</a>
+        </div>
+        <p class="muted" style="margin-top:16px">También puedes formar tu propia red con tu familia, amistades y vecinos, o buscar personas cuidadoras de tu comunidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT COUNTS -->
+  <section style="padding-top:0" aria-labelledby="t-cuenta">
+    <div class="wrap">
+      <h2 id="t-cuenta">¿Qué cuenta como cuidado?</h2>
+      <ul class="chips">
+        <li>Acompañar a citas médicas</li>
+        <li>Cuidar niñas y niños</li>
+        <li>Cuidar personas mayores</li>
+        <li>Traslados</li>
+        <li>Apoyo en casa a personas dependientes</li>
+      </ul>
+      <h3 style="margin-top:36px">¿Y si tienes un oficio o una profesión?</h3>
+      <p>Puedes ofrecerlo a cambio de horas de cuidado. Una hora de tu oficio vale una hora de cuidado.</p>
+      <ul class="chips oficios">
+        <li>Terapia</li><li>Dentista</li><li>Plomería</li><li>Estética</li><li>Jardinería</li><li>Limpieza</li><li>Mantenimiento</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="probar" style="padding-block:0 64px" aria-labelledby="t-probar">
+    <div class="wrap demo">
+      <span class="eyebrow">Pruébalo</span>
+      <h2 id="t-probar">Así se mueve tu saldo de horas.</h2>
+      <p>Da una hora y tu saldo sube. Recibe una hora y baja. Puedes pedir primero, hasta 5 horas por debajo de cero, y devolverlas después.</p>
+      <div class="demo-grid">
+        <div class="balance">
+          <small id="bal-label">Saldo de ejemplo, no es el tuyo</small>
+          <output id="bal" for="btn-dar btn-recibir" aria-labelledby="bal-label">0 h</output>
+          <div class="gauge" aria-hidden="true"><span class="zero"></span><span class="dot" id="dot" style="left:33.333%"></span></div>
+          <div class="scale" aria-hidden="true"><span>−5 h</span><span>0</span><span>+10 h</span></div>
+        </div>
+        <div>
+          <h3>Tú decides</h3>
+          <div class="controls">
+            <button type="button" class="btn rose" id="btn-dar">Doy 1 hora de cuidado</button>
+            <button type="button" class="btn" id="btn-recibir">Recibo 1 hora de cuidado</button>
+            <button type="button" class="btn ghost" id="btn-reiniciar">Empezar de nuevo</button>
+          </div>
+          <p class="status" id="estado" role="status" aria-live="polite">Tu saldo empieza en 0 horas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section id="reglas" style="padding-top:0" aria-labelledby="t-reglas">
+    <div class="wrap">
+      <span class="eyebrow">Reglas claras</span>
+      <h2 id="t-reglas">Sencillas de entender y justas para todas y todos.</h2>
+      <div class="rules">
+        <div class="rule"><h3>Una hora vale una hora</h3><p>Sin excepciones. Una hora de una profesión vale lo mismo que una hora de cuidado.</p></div>
+        <div class="rule"><h3>Todo intercambio incluye cuidado</h3><p>Se intercambian horas de cuidado por horas de cuidado, o por un servicio profesional u oficio.</p></div>
+        <div class="rule"><h3>Sin dinero</h3><p>Las horas no se compran ni se venden. Se dan y se reciben.</p></div>
+        <div class="rule"><h3>Puedes pedir primero</h3><p>Tu saldo puede bajar hasta 5 horas por debajo de cero, para recibir ayuda cuando más la necesitas.</p></div>
+      </div>
+      <p style="margin-top:24px"><button type="button" class="btn ghost" id="abrir-reglas" aria-haspopup="dialog">Leer las reglas completas</button></p>
+    </div>
+  </section>
+
+  <!-- COMMUNITY MAP -->
+  <section id="comunidad" style="padding-top:0" aria-labelledby="t-comunidad">
+    <div class="wrap">
+      <span class="eyebrow">Tu comunidad</span>
+      <h2 id="t-comunidad">Un grupo de apoyo cabe en unas cuantas calles.</h2>
+      <p>Esta ilustración muestra cómo se vería un grupo en una colonia. Los puntos son ejemplos, no direcciones reales.</p>
+      <div class="map-grid">
+        <div class="map">
+          <svg viewBox="0 0 520 340" role="img" aria-labelledby="map-t" aria-describedby="map-lista">
+            <title id="map-t">Mapa ilustrado de un grupo de apoyo con cinco puntos de ejemplo</title>
+            <rect width="520" height="340" fill="#DDE5CB"/>
+            <!-- streets -->
+            <g stroke="#F6F1E9" stroke-width="16" stroke-linecap="round" fill="none">
+              <path d="M0 110 H520"/><path d="M0 240 H520"/><path d="M140 0 V340"/><path d="M360 0 V340"/><path d="M0 40 L180 110"/>
+            </g>
+            <!-- blocks -->
+            <g fill="#A9B99D" stroke="#374B42" stroke-width="2">
+              <rect x="20" y="130" width="100" height="90" rx="10"/><rect x="160" y="130" width="180" height="90" rx="10"/>
+              <rect x="380" y="130" width="120" height="90" rx="10"/><rect x="160" y="260" width="180" height="60" rx="10"/>
+              <rect x="380" y="20" width="120" height="70" rx="10"/><rect x="20" y="260" width="100" height="60" rx="10"/>
+            </g>
+            <!-- park -->
+            <circle cx="250" cy="55" r="34" fill="#F6F1E9" stroke="#374B42" stroke-width="2"/>
+            <!-- pins -->
+            <g stroke="#374B42" stroke-width="3" font-family="Fraunces, Georgia, serif" font-size="20" font-weight="650" text-anchor="middle" fill="#374B42">
+              <circle cx="70" cy="175" r="18" fill="#E5B9B5"/><text x="70" y="182" stroke="none">1</text>
+              <circle cx="250" cy="175" r="18" fill="#E5B9B5"/><text x="250" y="182" stroke="none">2</text>
+              <circle cx="440" cy="175" r="18" fill="#E5B9B5"/><text x="440" y="182" stroke="none">3</text>
+              <circle cx="250" cy="290" r="18" fill="#E5B9B5"/><text x="250" y="297" stroke="none">4</text>
+              <circle cx="440" cy="55" r="18" fill="#E5B9B5"/><text x="440" y="62" stroke="none">5</text>
+            </g>
+          </svg>
+        </div>
+        <ol class="map-list" id="map-lista" aria-label="Los puntos del mapa, en lista">
+          <li><b class="n" aria-hidden="true">1</b><div>Acompañar a una cita médica<span>Cuidado · 2 horas</span></div></li>
+          <li><b class="n" aria-hidden="true">2</b><div>Cuidar a una niña o un niño por la tarde<span>Cuidado · 3 horas</span></div></li>
+          <li><b class="n" aria-hidden="true">3</b><div>Terapia para un adulto mayor<span>Profesión · 1 hora</span></div></li>
+          <li><b class="n" aria-hidden="true">4</b><div>Arreglar una fuga en casa<span>Oficio, plomería · 2 horas</span></div></li>
+          <li><b class="n" aria-hidden="true">5</b><div>Traslado a una consulta<span>Cuidado · 1 hora</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section style="padding-top:0" aria-labelledby="t-confianza">
+    <div class="wrap">
+      <span class="eyebrow">Confianza</span>
+      <h2 id="t-confianza">Cuidar es cosa de confianza. Lo tomamos en serio.</h2>
+      <div class="trust">
+        <div><b>Personas verificadas</b><p>Verificamos la identidad de quienes participan.</p></div>
+        <div><b>Necesidad de cuidado comprobada</b><p>Verificamos, de varias formas, que existe un familiar que requiere cuidado.</p></div>
+        <div><b>Cada hora se confirma</b><p>Las horas de cuidado se acreditan con la confirmación de la familia cuidada o de una tercera persona.</p></div>
+        <div><b>Tus datos, protegidos</b><p>La información de salud y de tu familia se usa solo para el servicio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section id="impacto" style="padding-top:0" aria-labelledby="t-impacto">
+    <div class="wrap">
+      <span class="eyebrow">Impacto</span>
+      <h2 id="t-impacto">A quién le cambia el día, y cómo lo vamos a medir.</h2>
+      <p>La mayoría de quienes cuidan son mujeres, pero el banco está abierto a cualquier persona, de cualquier género. Cuando un vecino cuida dos horas, el cuidado deja de ser tarea de una sola mujer y se vuelve algo de la comunidad. No hace falta tarjeta ni cuenta de banco, y funciona desde el navegador del celular, sin descargar nada.</p>
+      <ul class="metrics">
+        <li><b>Horas de relevo por cuidadora al mes</b>El tiempo libre que recupera quien cuida.</li>
+        <li><b>Carga de quien cuida</b>Escala Zarit al entrar y a los tres meses.</li>
+        <li><b>Quién da las horas</b>Qué parte del cuidado lo dan hombres y vecinos sin familiar dependiente.</li>
+        <li><b>Horas que vuelven</b>Cuántas horas pedidas por adelantado se devuelven.</li>
+      </ul>
+      <p style="margin-top:24px">El piloto empieza en una colonia de Iztapalapa. La unidad es un grupo de unas cuantas calles, así que cualquier alcaldía o municipio puede copiarlo con su propia gente.</p>
+      <h3 style="margin-top:32px">Lo que el piloto todavía tiene que resolver</h3>
+      <ul>
+        <li>Las formas concretas de verificar la dependencia y las horas.</li>
+        <li>Qué pasa con las horas de quien deja la comunidad.</li>
+        <li>Un seguro de responsabilidad civil para el cuidado de personas dependientes.</li>
+        <li>El aviso de privacidad para datos de salud.</li>
+        <li>Cómo participa quien no tiene celular propio.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- RESPONSIBLE TECH -->
+  <section id="tecnologia" style="padding-top:0" aria-labelledby="t-tecnologia">
+    <div class="wrap band">
+      <span class="eyebrow">Tecnología responsable</span>
+      <h2 id="t-tecnologia">Las decisiones sobre ti las toman personas.</h2>
+      <div class="trust">
+        <div><b>Sin inteligencia artificial que decida</b><p>Ningún algoritmo califica a quien cuida ni decide quién recibe ayuda. Cada hora la confirma la familia cuidada o una tercera persona.</p></div>
+        <div><b>Tus datos no se venden</b><p>No vendemos datos de salud ni de cansancio a aseguradoras ni a nadie. Para política pública solo se usan cifras agregadas y anónimas, con tu consentimiento.</p></div>
+        <div><b>Lo mínimo necesario</b><p>Pedimos solo lo que hace falta para verificar a las personas y la necesidad de cuidado. Sin rastreo de ubicación.</p></div>
+        <div><b>Hecho para leerse fácil</b><p>Letra pensada para baja visión, buen contraste y todo se usa con teclado o lector de pantalla.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding-top:0" aria-labelledby="t-faq">
+    <div class="wrap">
+      <h2 id="t-faq">Preguntas frecuentes</h2>
+      <details><summary>¿Necesito tener un familiar dependiente para participar?</summary><p>No. Si quieres cuidar, te registras como vecina o vecino cuidador. Si necesitas apoyo de cuidado para un familiar, te registras como familia.</p></details>
+      <details><summary>¿Qué pasa si debo horas?</summary><p>Tu saldo puede bajar hasta 5 horas por debajo de cero. Después las devuelves ofreciendo horas a tu comunidad.</p></details>
+      <details><summary>¿Se paga con dinero?</summary><p>No. Se intercambian horas, y una hora de cualquier servicio vale una hora de cuidado.</p></details>
+      <details><summary>¿Puedo intercambiar mi oficio por el oficio de otra persona?</summary><p>No. Todo intercambio incluye al menos una hora de cuidado.</p></details>
+      <details><summary>¿Dónde funciona?</summary><p>Estamos comenzando con un piloto en la alcaldía Iztapalapa.</p></details>
+    </div>
+  </section>
+
+  <!-- SIGN-UP -->
+  <section id="unirme" style="padding-top:0" aria-labelledby="t-unirme">
+    <div class="wrap signup">
+      <span class="eyebrow" style="color:var(--bosque)">Próximamente</span>
+      <h2 id="t-unirme">El registro del piloto abre pronto.</h2>
+      <p>Estamos preparando el primer grupo en Iztapalapa. Cuando el registro esté listo, aquí podrás apuntarte como familia que necesita apoyo de cuidado o como vecina o vecino que quiere cuidar.</p>
+      <p style="margin:0;font-weight:700">Esta es una versión de revisión. Todavía no recibe registros.</p>
+      <div class="actions" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
+        <a class="btn" href="cuidared/">Probar el demo del banco</a>
+        <a class="btn ghost" href="gobierno/">Ver el panel para gobierno</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>entremanos</b> · Banco de tiempo de cuidados · Piloto en la alcaldía Iztapalapa, Ciudad de México.</p>
+    <p class="muted">Aviso de privacidad: en redacción.</p>
+    <ul class="sources">
+      <li>INEGI, Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022.</li>
+      <li>INEGI, Encuesta Nacional sobre Uso del Tiempo (ENUT) 2019.</li>
+      <li>INEGI, Cuenta Satélite del Trabajo No Remunerado de los Hogares de México 2023.</li>
+      <li>Gobierno de la Ciudad de México, reglas de operación de Ciudad que Cuida a quien Cuida.</li>
+    </ul>
+  </div>
+</footer>
+
+<dialog id="reglas-dialog" aria-labelledby="reglas-titulo">
+  <h2 id="reglas-titulo" style="font-size:1.7rem">Reglas completas</h2>
+  <ul>
+    <li>Una hora vale una hora, sin excepciones, incluidas las profesiones.</li>
+    <li>Todo intercambio incluye al menos una hora de cuidado. Un oficio se intercambia solo por horas de cuidado.</li>
+    <li>Cuidado es acompañar a citas, cuidar niñas, niños y personas mayores, hacer traslados y dar apoyo en casa a personas dependientes.</li>
+    <li>Las horas de cuidado se acreditan con la confirmación de la familia cuidada o de una tercera persona.</li>
+    <li>El saldo puede bajar hasta 5 horas por debajo de cero.</li>
+    <li>No se usa dinero.</li>
+  </ul>
+  <button type="button" class="btn" id="cerrar-reglas">Cerrar</button>
+</dialog>
+
+<script>
+  (function () {
+    /* Tabs: arrow keys, Home and End move between tabs and activate them */
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+    function select(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+    }
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(tab, false); });
+      tab.addEventListener('keydown', function (e) {
+        var next = null;
+        if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+        else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === 'Home') next = tabs[0];
+        else if (e.key === 'End') next = tabs[tabs.length - 1];
+        if (next) { e.preventDefault(); select(next, true); }
+      });
+    });
+
+    /* Hour balance demo */
+    var MIN = -5, MAX = 10, saldo = 0;
+    var out = document.getElementById('bal');
+    var dot = document.getElementById('dot');
+    var estado = document.getElementById('estado');
+    function plural(n) { return Math.abs(n) === 1 ? 'hora' : 'horas'; }
+    function pintar(msg) {
+      var shown = Math.max(MIN, Math.min(MAX, saldo));
+      out.textContent = (saldo > 0 ? '+' : '') + saldo + ' h';
+      dot.style.left = ((shown - MIN) / (MAX - MIN) * 100) + '%';
+      estado.textContent = msg;
+    }
+    document.getElementById('btn-dar').addEventListener('click', function () {
+      saldo += 1;
+      pintar('Diste 1 hora de cuidado. Tu saldo es ' + saldo + ' ' + plural(saldo) + '.');
+    });
+    document.getElementById('btn-recibir').addEventListener('click', function () {
+      if (saldo - 1 < MIN) {
+        pintar('No se puede. Tu saldo no puede bajar de ' + MIN + ' horas. Da una hora de cuidado para seguir recibiendo.');
+        return;
+      }
+      saldo -= 1;
+      var margen = saldo - MIN;
+      pintar('Recibiste 1 hora de cuidado. Tu saldo es ' + saldo + ' ' + plural(saldo) + '. Puedes pedir ' + margen + ' ' + plural(margen) + ' más antes de devolver.');
+    });
+    document.getElementById('btn-reiniciar').addEventListener('click', function () {
+      saldo = 0;
+      pintar('Tu saldo volvió a 0 horas.');
+    });
+
+    /* Dialog: Escape closes natively; the button and a click on the backdrop close it too,
+       and focus returns to the control that opened it */
+    var dlg = document.getElementById('reglas-dialog');
+    var opener = document.getElementById('abrir-reglas');
+    opener.addEventListener('click', function () {
+      if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+    });
+    function cerrar() { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); opener.focus(); }
+    document.getElementById('cerrar-reglas').addEventListener('click', cerrar);
+    dlg.addEventListener('click', function (e) {
+      var r = dlg.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) cerrar();
+    });
+    dlg.addEventListener('close', function () { opener.focus(); });
+  })();
+</script>
+
+</body></html>
